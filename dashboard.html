@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramzz-Crasher Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Ramzz-Crasher</div>
+            <div class="user-info">
+                <span id="usernameDisplay"></span>
+                <span id="userTypeBadge" class="user-type"></span>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" data-section="target">Nomor Target</a></li>
+                    <li><a href="#" data-section="senders">Senders</a></li>
+                    <li id="usersMenuItem"><a href="#" data-section="users">Users</a></li>
+                    <li id="pairingMenuItem"><a href="#" data-section="pairing">Pairing Code</a></li>
+                </ul>
+            </div>
+            
+            <div class="content">
+                <!-- Target Section -->
+                <div id="targetSection">
+                    <h2 class="section-title">Nomor Target</h2>
+                    <form class="target-form" id="targetForm">
+                        <div class="form-group">
+                            <label for="targetNumber">Target Number</label>
+                            <input type="text" id="targetNumber" placeholder="628xxxxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="attackType">Attack Type</label>
+                            <select id="attackType" required>
+                                <option value="delay_invis">Delay Invis</option>
+                                <option value="forclose_invis">Forclose Invis</option>
+                                <option value="crash_beta">Crash Beta</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">Send to Target</button>
+                    </form>
+                    <div id="attackStatus" class="status-message"></div>
+                </div>
+                
+                <!-- Senders Section -->
+                <div id="sendersSection" class="hidden">
+                    <h2 class="section-title">Connected Senders</h2>
+                    <div id="sendersList" class="senders-list">
+                        <!-- Senders will be added here dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Users Section -->
+                <div id="usersSection" class="hidden">
+                    <h2 class="section-title">User Management</h2>
+                    <div id="usersList" class="users-list">
+                        <!-- Users will be added here dynamically -->
+                    </div>
+                    
+                    <form class="add-user-form" id="addUserForm">
+                        <div class="form-group">
+                            <label for="newUsername">Username</label>
+                            <input type="text" id="newUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Password</label>
+                            <input type="password" id="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userType">User Type</label>
+                            <select id="userType" required>
+                                <!-- Options will be added dynamically based on user type -->
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">Add User</button>
+                    </form>
+                </div>
+                
+                <!-- Pairing Section -->
+                <div id="pairingSection" class="hidden">
+                    <h2 class="section-title">Pairing Code</h2>
+                    <div class="pairing-code">
+                        <p>Use this code to pair a sender:</p>
+                        <div class="code" id="pairingCode"></div>
+                        <button id="refreshPairingCode" class="submit-btn">Generate New Code</button>
+                        <p style="margin-top: 1rem;">Instructions:</p>
+                        <ol style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Open Google Chrome (Ubuntu/Safari) on sender device</li>
+                            <li>Navigate to the pairing page</li>
+                            <li>Enter the code above</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="attacks.js"></script>
+    <script>
+        // Initialize the dashboard after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initDashboard();
+        });
+    </script>
+</body>
+</html>
